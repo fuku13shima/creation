@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <title>テキスト移動練習</title>
+    </head>
+
+    <body>
+
+        <button id = "resetBut">reset</button>
+        <button id = "stopBut">stop</button>
+        
+        <div id = "test">TEST</div>
+        <!--div id = "test2">AAA</div-->
+
+        <script>
+            // let el = document.getElementById('test');
+            // el.style.position = 'fixed';
+            // el.style.left = '10px';
+
+            // let el2 = document.getElementById('test2');
+            // el2.style.position = 'fixed';
+            // el2.style.left = '50px';
+            let clickX;
+            let clickY;
+            let clickPosition;
+            let isClick = false;
+
+            $(function(){
+                $('#test').css("position" , "fixed");
+                $('#test').css("top" , "50px");
+                $('#test').css("left" , "40px");
+                $('#test').css("border" , "1px solid");
+                $('#test2').css("position" , "fixed");
+
+                $('#test').on("mousedown" , function(e){
+                    isClick = true;
+                    clickX = e.screenX;
+                    clickY = e.screenY;
+                    clickPosition = $('#test').position();
+
+                    console.log("X:" + e.screenX);
+                    console.log("Y:" + e.screenY);
+                    console.log("POS" + $('#test').position().top);
+                    console.log("POS" + $('#test').position().left);
+                    // $('#test').css("top.");
+                    // $('#test').css("left.");
+                });
+
+                $('#test').on("mousemove" , function(e){
+                    //isClickがfalseならすぐreturn
+                    if(!isClick) return;
+
+                        $('#test').css("top" , clickPosition.top + (e.screenY - clickY) + "px");
+                        $('#test').css("left" , clickPosition.left + (e.screenX - clickX) + "px");
+
+                        console.log("moveX:" + e.screenX);
+                        console.log("moveY:" + e.screenY);
+                })
+
+                $('#test').on("mouseup" , function(e){
+                    isClick = false;
+                    console.log("stop");
+                })
+
+
+            });
+
+            stopBut.addEventListener('click' , () => {
+                isClick = false;
+                console.log("stop");
+            });
+
+            resetBut.addEventListener('click' , () => {
+                isClick = false;
+                $('#test').css("top" , "50px");
+                $('#test').css("left" , "40px");
+                console.log("reset");
+            });
+
+
+
+
+        </script>
+    </body>
+</html>

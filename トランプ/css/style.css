@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+.wrapper{
+    margin: 0 auto;
+    max-width: 700.6px;
+}
+
+.table{
+    margin: 0 auto;
+    display: flex;
+    /*width: 100%;*/
+}
+
+td{
+    width: 49px;
+}
+
+img{
+    max-width: 49px;
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>神経衰弱</title>
+        <link rel = "stylesheet" href = "css/style.css">
+    </head>
+
+    <body>
+        <div class = "wrapper">
+          
+            <table id = "table"></table>
+            <button type='button' id = 'help'>ヘルプ：残り3回</button>
+            <!--button type = 'button' id = 'reset'>やり直し</button-->
+            
+        </div>
+    </body>
+
+    <script>
+        document.body.style.backgroundColor = '#EEE8AA';
+
+        //トランプ画像をimages配列に格納
+        //裏面、ダイヤ、ハート、クラブ、スペード
+        const images = [
+            {src: 'images/playingcard_png/type-A/back.png'}
+            ,{src: 'images/playingcard_png/type-A/d01.png'}
+            ,{src: 'images/playingcard_png/type-A/d02.png'}
+            ,{src: 'images/playingcard_png/type-A/d03.png'}
+            ,{src: 'images/playingcard_png/type-A/d04.png'}
+            ,{src: 'images/playingcard_png/type-A/d05.png'}
+            ,{src: 'images/playingcard_png/type-A/d06.png'}
+            ,{src: 'images/playingcard_png/type-A/d07.png'}
+            ,{src: 'images/playingcard_png/type-A/d08.png'}
+            ,{src: 'images/playingcard_png/type-A/d09.png'}
+            ,{src: 'images/playingcard_png/type-A/d10.png'}
+            ,{src: 'images/playingcard_png/type-A/d11.png'}
+            ,{src: 'images/playingcard_png/type-A/d12.png'}
+            ,{src: 'images/playingcard_png/type-A/d13.png'}
+            ,{src: 'images/playingcard_png/type-A/h01.png'}
+            ,{src: 'images/playingcard_png/type-A/h02.png'}
+            ,{src: 'images/playingcard_png/type-A/h03.png'}
+            ,{src: 'images/playingcard_png/type-A/h04.png'}
+            ,{src: 'images/playingcard_png/type-A/h05.png'}
+            ,{src: 'images/playingcard_png/type-A/h06.png'}
+            ,{src: 'images/playingcard_png/type-A/h07.png'}
+            ,{src: 'images/playingcard_png/type-A/h08.png'}
+            ,{src: 'images/playingcard_png/type-A/h09.png'}
+            ,{src: 'images/playingcard_png/type-A/h10.png'}
+            ,{src: 'images/playingcard_png/type-A/h11.png'}
+            ,{src: 'images/playingcard_png/type-A/h12.png'}
+            ,{src: 'images/playingcard_png/type-A/h13.png'}
+            ,{src: 'images/playingcard_png/type-A/k01.png'}
+            ,{src: 'images/playingcard_png/type-A/k02.png'}
+            ,{src: 'images/playingcard_png/type-A/k03.png'}
+            ,{src: 'images/playingcard_png/type-A/k04.png'}
+            ,{src: 'images/playingcard_png/type-A/k05.png'}
+            ,{src: 'images/playingcard_png/type-A/k06.png'}
+            ,{src: 'images/playingcard_png/type-A/k07.png'}
+            ,{src: 'images/playingcard_png/type-A/k08.png'}
+            ,{src: 'images/playingcard_png/type-A/k09.png'}
+            ,{src: 'images/playingcard_png/type-A/k10.png'}
+            ,{src: 'images/playingcard_png/type-A/k11.png'}
+            ,{src: 'images/playingcard_png/type-A/k12.png'}
+            ,{src: 'images/playingcard_png/type-A/k13.png'}
+            ,{src: 'images/playingcard_png/type-A/s01.png'}
+            ,{src: 'images/playingcard_png/type-A/s02.png'}
+            ,{src: 'images/playingcard_png/type-A/s03.png'}
+            ,{src: 'images/playingcard_png/type-A/s04.png'}
+            ,{src: 'images/playingcard_png/type-A/s05.png'}
+            ,{src: 'images/playingcard_png/type-A/s06.png'}
+            ,{src: 'images/playingcard_png/type-A/s07.png'}
+            ,{src: 'images/playingcard_png/type-A/s08.png'}
+            ,{src: 'images/playingcard_png/type-A/s09.png'}
+            ,{src: 'images/playingcard_png/type-A/s10.png'}
+            ,{src: 'images/playingcard_png/type-A/s11.png'}
+            ,{src: 'images/playingcard_png/type-A/s12.png'}
+            ,{src: 'images/playingcard_png/type-A/s13.png'}
+        ]; 
+
+        class Card{
+            constructor(type , num){
+                this.type = type;
+                this.num = num;
+                //表かどうか
+                this.isOpen = false;
+                //ペアがそろったかどうか
+                this.isPair = false;
+            }
+        }
+
+        const cards = [];
+        //トランプマーク　ダイヤ、ハート、クラブ、スペード
+        const card_type = [0 , 13 , 26 , 39];
+        let cnt = 0;
+        let helpCnt = 3;
+        let firstId= -1;
+
+        //トランプマーク毎数字生成
+        for(let i = 0 ; i < card_type.length ; i++){
+            for(let j = 1 ; j <= 13 ; j++){
+                cards[cnt] = new Card(card_type[i] , j);
+                //console.log(cnt + ' type:' + card_type[i] + ' num:' + j);
+                cnt++
+            }
+        }
+
+        //シャッフルする関数
+        function shuffle(){
+            let i = cards.length;
+            //ランダムな位置と入れ替え
+            while(i){
+                let swap_idx = Math.floor(Math.random()*i--);
+                //console.log();
+                let tmp = cards[i];
+                cards[i] = cards[swap_idx];
+                cards[swap_idx] = tmp;
+            }
+        }
+
+        //const message = document.getElementById('message');
+        //tableタグでカードを並べる
+        const table = document.getElementById('table');
+        //console.log(table);
+
+        function cardSet(){
+            cnt = 0;
+            //4行13列で並べる
+            for(let i = 0 ; i < card_type.length ; i++){
+                let tr = document.createElement('tr'); 
+                for(let j = 1 ; j <= 13 ; j++){
+                    let td = document.createElement('td'); 
+                    let d_card = cards[cnt];
+                    td.classList.add('card');
+                    td.setAttribute('id' , cnt);
+                    //カード(画像)挿入
+                    td.innerHTML = '<img src = ' + images[d_card.type + d_card.num].src
+                                            + ' width = "max" height = "max">'; 
+                    
+                    //クリックで表に返す
+                    td.addEventListener('click' , function(){
+                        let el = this;
+                        let cnt = el.id;
+                        //console.log('click:' + cnt);
+                        if(cards[cnt].isPair){
+                            return;
+                        }
+                        //初めてクリック
+                        if(firstId < 0 ){
+                            flip(cnt);
+                            firstId = cnt;
+                        }else{
+                            flip(cnt);
+
+                            if(checkPair(firstId , cnt)){
+                                //console.log('pair');
+                                //message.innerHTML = 'ペアができた';
+                                //ペアになったカードのisPairにtrue格納
+                                cards[firstId].isPair = true;
+                                cards[cnt].isPair = true;
+
+                            }else{
+                                //console.log('no pair');
+                                //message.innerHTML = '残念！';
+                                let wkFirstId = firstId;
+                                setTimeout(function(){
+                                    //console.log(wkFirstId);
+                                    flip(wkFirstId);
+                                    flip(cnt);
+                                    //message.innerHTML = ' ';
+
+                                } , 1000);
+                            }
+                            //一枚目判定初期化
+                            firstId = -1;
+                        }
+                    });
+
+                    //tdタグ閉じる
+                    tr.appendChild(td);
+
+                    cnt++
+                }
+
+                table.appendChild(tr);
+            }
+
+            //秒後にカードを裏向きにする
+            setTimeout (function(){
+
+                //カードを裏向きにする
+                for(let i = card_type.length ; i > 0 ; i--){
+                    for(let j = 13 ; j > 0 ; j--){
+                        cnt--;
+                        let el = document.getElementById(cnt);
+                        //console.log(el);
+                        el.innerHTML = '<img src = ' + images[0].src
+                                            + ' width = "max" height = "max">';  
+                    }
+                }
+
+            } , 2000);
+        }
+
+        //カードシャッフル
+        shuffle();
+        cardSet();
+
+
+        //クリックしたカードを表にする
+        function flip(cnt){
+            let el = document.getElementById(cnt); 
+            let d_card = cards[cnt];
+            //console.log(document.getElementById(cnt));
+            
+            if(d_card.isOpen){
+                el.innerHTML = '<img src = ' + images[0].src
+                                        + ' width = "max" height = "max">';  
+                d_card.isOpen = false;
+
+            }else{
+                el.innerHTML = '<img src = ' + images[d_card.type + d_card.num].src
+                                        + ' width = "max" height = "max">'; 
+                d_card.isOpen = true;       
+        }
+
+     }
+    
+     //クリックしたカードがペアかどうか
+     function checkPair(firstId , cnt){
+        let aCard = cards[firstId];
+        let dCard = cards[cnt];
+        //console.log('aCard:' + aCard.num);
+        //console.log('dCard:' + dCard.num);
+
+        //同じだったらtrueを返す
+        //→めくった時のif文条件分がtrueになる
+        if(aCard.num == dCard.num){
+            return true;
+
+        }else{
+            return false;
+        }
+
+     }
+
+     const help = document.getElementById('help');
+     //console.log(help);
+     help.addEventListener('click' , function(){
+        cnt = 0;
+        // if(helpCnt <= 0){
+        //     return;
+        // }
+
+        for(let i = 0 ; i < card_type.length ; i++){
+            for(let j = 1 ; j <= 13 ; j++){
+                flip(cnt);
+                cnt++;
+            }
+        
+
+        setTimeout(function(){
+            cnt = 0 ;
+
+            for(let i = 0 ; i < card_type.length ; i++){
+                for(let j = 1 ; j <= 13 ; j++){
+                    flip(cnt);
+                    cnt++;
+                }
+            }
+        } , 3000)
+
+    }
+
+
+     helpCnt--;
+     help.innerHTML = 'ヘルプ：残り' + helpCnt + '回';
+
+     if(helpCnt <= 0){
+        help.innerHTML = 'ヘルプ：残り０回';
+        //help.style.display = 'none';
+     };
+
+    });
+
+
+    // const reset = document.getElementById('reset');
+    //  //console.log(reset);
+    // reset.addEventListener('click' , function(){
+    //     // let tr = document.querySelector('tr');
+    //     // console.log(tr);
+    //     // tr.remove();
+
+    //     shuffle();
+    //     cardSet();
+    // });
+
+
+    </script>
+
+</html>

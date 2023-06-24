@@ -1,0 +1,19 @@
+@charset "UTF-8";
+html{
+	max-width:auto;
+}
+
+.wrapper{
+    margin: 0 auto;
+    max-width:640px;
+}
+
+h2 , button{
+	text-align: center;
+}
+
+.table{
+    margin: 0;
+    display: flex;
+}
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id = img2></div>
+        <p>test</p>
+        <img id = img>
+    </body>
+
+    <script>
+ //images配列要素数
+ let num = 0;
+
+//イベント画像をimages配列に格納
+const images = [
+    {src: 'images/playingcard_png/type-B/back.png'}
+    ,{src: 'images/playingcard_png/type-B/d01.png'}
+    ,{src: 'images/playingcard_png/type-B/d02.png'}
+    ,{src: 'images/playingcard_png/type-B/d03.png'}
+    ,{src: 'images/playingcard_png/type-B/d04.png'}
+    ,{src: 'images/playingcard_png/type-B/d05.png'}
+    ,{src: 'images/playingcard_png/type-B/d06.png'}
+    ,{src: 'images/playingcard_png/type-B/d07.png'}
+    ,{src: 'images/playingcard_png/type-B/d08.png'}
+    ,{src: 'images/playingcard_png/type-B/d09.png'}
+    ,{src: 'images/playingcard_png/type-B/d10.png'}
+    ,{src: 'images/playingcard_png/type-B/d11.png'}
+    ,{src: 'images/playingcard_png/type-B/d12.png'}
+    ,{src: 'images/playingcard_png/type-B/d13.png'}
+    ,{src: 'images/playingcard_png/type-B/h01.png'}
+    ,{src: 'images/playingcard_png/type-B/h02.png'}
+    ,{src: 'images/playingcard_png/type-B/h03.png'}
+    ,{src: 'images/playingcard_png/type-B/h04.png'}
+    ,{src: 'images/playingcard_png/type-B/h05.png'}
+    ,{src: 'images/playingcard_png/type-B/h06.png'}
+    ,{src: 'images/playingcard_png/type-B/h07.png'}
+    ,{src: 'images/playingcard_png/type-B/h08.png'}
+    ,{src: 'images/playingcard_png/type-B/h09.png'}
+    ,{src: 'images/playingcard_png/type-B/h10.png'}
+    ,{src: 'images/playingcard_png/type-B/h11.png'}
+    ,{src: 'images/playingcard_png/type-B/h12.png'}
+    ,{src: 'images/playingcard_png/type-B/h13.png'}
+    ,{src: 'images/playingcard_png/type-B/k01.png'}
+    ,{src: 'images/playingcard_png/type-B/k02.png'}
+    ,{src: 'images/playingcard_png/type-B/k03.png'}
+    ,{src: 'images/playingcard_png/type-B/k04.png'}
+    ,{src: 'images/playingcard_png/type-B/k05.png'}
+    ,{src: 'images/playingcard_png/type-B/k06.png'}
+    ,{src: 'images/playingcard_png/type-B/k07.png'}
+    ,{src: 'images/playingcard_png/type-B/k08.png'}
+    ,{src: 'images/playingcard_png/type-B/k09.png'}
+    ,{src: 'images/playingcard_png/type-B/k10.png'}
+    ,{src: 'images/playingcard_png/type-B/k11.png'}
+    ,{src: 'images/playingcard_png/type-B/k12.png'}
+    ,{src: 'images/playingcard_png/type-B/k13.png'}
+    ,{src: 'images/playingcard_png/type-B/s01.png'}
+    ,{src: 'images/playingcard_png/type-B/s02.png'}
+    ,{src: 'images/playingcard_png/type-B/s03.png'}
+    ,{src: 'images/playingcard_png/type-B/s04.png'}
+    ,{src: 'images/playingcard_png/type-B/s05.png'}
+    ,{src: 'images/playingcard_png/type-B/s06.png'}
+    ,{src: 'images/playingcard_png/type-B/s07.png'}
+    ,{src: 'images/playingcard_png/type-B/s08.png'}
+    ,{src: 'images/playingcard_png/type-B/s09.png'}
+    ,{src: 'images/playingcard_png/type-B/s10.png'}
+    ,{src: 'images/playingcard_png/type-B/s11.png'}
+    ,{src: 'images/playingcard_png/type-B/s12.png'}
+    ,{src: 'images/playingcard_png/type-B/s13.png'}
+]; 
+
+
+//let el = document.createElement('img');
+let el = document.getElementById('img2');
+console.log(el);
+//el.setAttribute('scr' , images[1].src);
+// el.setAttribute('scr' , images[1].src);
+// el.setAttribute('alt' , 'card');
+// el.innerHTML = '<img scr = ' + images[1].src + '\'>';  
+
+el.innerHTML= '<img src = ' + images[1].src
+                                        + ' width = "max" height = "max">'; 
+
+// el.innerHTML= '<img src = "images/playingcard_png/type-B/s13.png" '
+//                                         + ' width = "max" height = "max">'; 
+    </script>
+
+</html>

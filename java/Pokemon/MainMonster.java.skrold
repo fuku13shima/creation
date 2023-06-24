@@ -1,0 +1,10 @@
+public class MainMonster{
+	public static void main(String[] args){
+		Monster m1 = new Zenigame();
+		m1.name = "ゼニガメ";
+		m1.type = "みず";
+		m1.hp = 22;
+		m1.attack();
+	}
+
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>カレンダーのサンプル</title>
+</head>
+<body>
+    <div id = "monthSelect">
+      <button id = "prevButton"> ＜ </button>
+      <button id = "nextButton"> ＞ </button>
+    </div>
+
+    <div id="calendar-container">
+        <div class="calendar">
+          <div class="calendar-header">2023年 6月</div>
+            <ul class="calendar-days">
+              <li class="calendar-date weekday">日</li>
+              <li class="calendar-date weekday">月</li>
+              <li class="calendar-date weekday">火</li>
+              <li class="calendar-date weekday">水</li>
+              <li class="calendar-date weekday">木</li>
+              <li class="calendar-date weekday">金</li>
+              <li class="calendar-date weekday">土</li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li class="calendar-date">1</li>
+              <li class="calendar-date">2</li>
+              <li class="calendar-date">3</li>
+              <li class="calendar-date">4</li>
+              <li class="calendar-date">5</li>
+              <li class="calendar-date">6</li>
+              <li class="calendar-date">7</li>
+              <li class="calendar-date">8</li>
+              <li class="calendar-date">9</li>
+              <li class="calendar-date">10</li>
+              <li class="calendar-date">11</li>
+              <li class="calendar-date">12</li>
+              <li class="calendar-date">13</li>
+              <li class="calendar-date">14</li>
+              <li class="calendar-date">15</li>
+              <li class="calendar-date">16</li>
+              <li class="calendar-date">17</li>
+              <li class="calendar-date">18</li>
+              <li class="calendar-date">19</li>
+              <li class="calendar-date">20</li>
+              <li class="calendar-date">21</li>
+              <li class="calendar-date">22</li>
+              <li class="calendar-date">23</li>
+              <li class="calendar-date">24</li>
+              <li class="calendar-date">25</li>
+              <li class="calendar-date">26</li>
+              <li class="calendar-date">27</li>
+              <li class="calendar-date">28</li>
+              <li class="calendar-date">29</li>
+              <li class="calendar-date">30</li>
+            </ul>
+          </div>
+        </div>
+          </div>
+  </div>
+
+  <script>
+
+
+    $(document).ready(function() {
+        let calendarContainer = document.getElementById('calendar-container');
+        calendarContainer.remove();
+        const week = ['日' , '月' , '火' , '水' , '木' , '金' , '土'];
+
+        // カレンダーを生成して表示する関数
+        function generateCalendar(year, month) {
+            let firstDay = new Date(year , month , 1).getDay();
+            let endDay  = new Date(year, month + 1, 0).getDate();
+            // let row = Math.ceil((firstDay + endDay) / week.length);
+            // console(row);
+            console.log(year + "/" + month + "曜日no." + firstDay);
+            // let calendarDays = document.getElementsByClassName('calendar-days');
+            let calendarDays = document.getElementById('calendar-days');
+            console.log(calendarDays);
+
+            for(let i = 0 ; i < week.length ; i++){
+                let li = document.createElement('li');
+                // li.classList.add('calendar-date weekday');
+                li.setAttribute('id' , i);
+                // li.innerHTML(week[i]);  
+            }
+            calendarDays.innerHTML= '<li>' + test + '</li>';
+
+
+            for(let j = 0 ; j <= endDay ; j++){
+                if(j < firstDay){
+                    let li = document.createElement('li');
+                    // li.classList.add('calendar-date');
+                    li.innerHTML = '/';
+                }else{
+                    let li = document.createElement('li');
+                    // li.classList.add('calendar-date');
+                    // li.innerHTML = week[i];  
+                    li.innerHTML = 'test'; 
+                }
+
+                //calendarDays.appendChild(li);
+            }
+        }
+
+        // 今日の年と月を取得します
+        var today = new Date();
+        var currentYear = today.getFullYear();
+        var currentMonth = today.getMonth();
+        console.log(currentMonth);
+
+        // カレンダーを生成して表示します
+        generateCalendar(currentYear, currentMonth);
+
+
+        nextButton.addEventListener('click' , function(){
+        let month = document.getElementById('month');
+        console.log(month);
+
+        currentMonth++;
+        console.log(currentMonth);
+
+        if(currentMonth > 11){
+            currentMonth = 0;
+            currentYear++;
+        }
+
+        generateCalendar(currentYear, currentMonth);
+
+        });
+
+        prevButton.addEventListener('click' , function(){
+        let month = document.getElementById('month');
+        console.log(month);
+
+        currentMonth--;
+        console.log(currentMonth);
+
+        if(currentMonth < 0){
+            currentMonth = 11;
+            currentYear--;
+        }
+
+        generateCalendar(currentYear, currentMonth);
+
+        });
+        
+
+
+    });
+ 
+  </script>
+</body>
+</html>
