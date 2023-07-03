@@ -1,7 +1,14 @@
+html{
+    background-color: #d0f3ff;
+    max-width: 960px
+}
+
 body{
     background-color: #98e0f8;
     margin: 0 auto;
-	/* max-width: 960px; */
+	width: 80%;
+    height: 300px;
+    border-radius: 7px;
     min-width: 200px;
     min-height: 200px;
 }
@@ -51,13 +58,8 @@ button:hover{
     margin-bottom: 0; */
 } 
 
-#num{
+/* #num{
     position: absolute;
     top: 25%;
     left: 50%;
-    /* position: absolute;
-    margin-top: -100px;
-    margin-left: -100px;
-    top: 30%;
-    left: 50%; */
-}
+} */

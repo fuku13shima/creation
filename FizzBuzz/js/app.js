@@ -11,15 +11,27 @@ console.log('size' + fontSizeOrigen + ' : weight' + fontWeightOrigen);
 $(document).ready(function() {
     cnt = 0;
     $('#num').text(cnt);
-
   });
+
+$(function(){
+    $('#num').knob({
+        'release' : function (v) {
+            console.log(v);
+            cnt = v;
+            FizzBuzzCheck(v);
+        }
+    });
+    
+});
 
 //UPボタン押したときカウントアップ
 countUpButton.addEventListener('click' , () => {
     cnt++;
-    $('#num').text(cnt);
+    $('#num').val(cnt);
     console.log('countUp' + cnt);
+    console.log($('#num').val());
 
+    $('#num').knob({});
     FizzBuzzCheck(cnt);
 
 });
@@ -27,18 +39,20 @@ countUpButton.addEventListener('click' , () => {
 //DOWNボタン押したときカウントダウン
 countDownButton.addEventListener('click' , () => {
     cnt--;
-    $('#num').text(cnt);
+    $('#num').val(cnt);
     console.log('countDown' + cnt);
 
+    $('#num').knob({});
     FizzBuzzCheck(cnt);
 
 });
 
 //RESETボタン押したときカウントリセット
 resetButton.addEventListener('click' , () => {
+    $('#num').val('0')
     cnt = 0;
     $('#checkResult').text('');
-    $('#num').text(cnt);
+    // $('#num').text(cnt);
     console.log('reset' + cnt);
 
     FizzBuzzCheck(cnt);
