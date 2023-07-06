@@ -2,8 +2,8 @@ let cnt = 0;
 let fizzFlg = false;
 let buzzFlg = false;
 let fontSizeOrigen = $('#num').css("font-size");
-let fontWeightOrigen = $('#num').css("font-weight");
-console.log('size' + fontSizeOrigen + ' : weight' + fontWeightOrigen);
+// let fontWeightOrigen = $('#num').css("width");
+// console.log('size' + fontSizeOrigen + ' : weight' + fontWeightOrigen);
 //let num = document.getElementById('num');
 //console.log(num);
 
@@ -11,27 +11,15 @@ console.log('size' + fontSizeOrigen + ' : weight' + fontWeightOrigen);
 $(document).ready(function() {
     cnt = 0;
     $('#num').text(cnt);
-  });
 
-$(function(){
-    $('#num').knob({
-        'release' : function (v) {
-            console.log(v);
-            cnt = v;
-            FizzBuzzCheck(v);
-        }
-    });
-    
-});
+  });
 
 //UPボタン押したときカウントアップ
 countUpButton.addEventListener('click' , () => {
     cnt++;
-    $('#num').val(cnt);
-    console.log('countUp' + cnt);
-    console.log($('#num').val());
+    $('#num').text(cnt);
+    // console.log('countUp' + cnt);
 
-    $('#num').knob({});
     FizzBuzzCheck(cnt);
 
 });
@@ -39,21 +27,19 @@ countUpButton.addEventListener('click' , () => {
 //DOWNボタン押したときカウントダウン
 countDownButton.addEventListener('click' , () => {
     cnt--;
-    $('#num').val(cnt);
-    console.log('countDown' + cnt);
+    $('#num').text(cnt);
+    // console.log('countDown' + cnt);
 
-    $('#num').knob({});
     FizzBuzzCheck(cnt);
 
 });
 
 //RESETボタン押したときカウントリセット
 resetButton.addEventListener('click' , () => {
-    $('#num').val('0')
     cnt = 0;
     $('#checkResult').text('');
-    // $('#num').text(cnt);
-    console.log('reset' + cnt);
+    $('#num').text(cnt);
+    // console.log('reset' + cnt);
 
     FizzBuzzCheck(cnt);
 
@@ -65,8 +51,8 @@ function FizzBuzzCheck(cnt){
     $('#checkResult').text('');
     $('#num').css('color' , 'black');
     $('#num').css('font-size' , fontSizeOrigen);
-    $('#num').css('font-weight' , fontWeightOrigen);
-    console.log('FizzBuzzCheck' + cnt);
+    // $('#num').css('width' , fontWeightOrigen);
+    // console.log('FizzBuzzCheck' + cnt);
 
     if(cnt != 0){
         if(cnt % 3 == 0){
@@ -84,16 +70,14 @@ function FizzBuzzCheck(cnt){
     if(fizzFlg && buzzFlg){
         $('#num').css('color' , 'orangered');
         $('#num').css('font-size' , '+=20');
-        $('#num').css('font-weight' , '1000');
+        // $('#num').css('width' , '40px');
         // console.log('size' + $('#num').css("font-size") + ' : weight' + $('#num').css("font-weight"));
-
 
     }else if (fizzFlg || buzzFlg){
         $('#num').css('color' , 'coral');
         $('#num').css('font-size' , '+=10');
-        $('#num').css('font-weight' , '900');
+        // $('#num').css('width' , '20px');
         // console.log('size' + $('#num').css("font-size") + ' : weight' + $('#num').css("font-weight"));
-
 
     }
 

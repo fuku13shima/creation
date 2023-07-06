@@ -9,8 +9,8 @@ body{
 	width: 80%;
     height: 300px;
     border-radius: 7px;
-    min-width: 200px;
-    min-height: 200px;
+    /* min-width: 200px;
+    min-height: 200px; */
 }
 
 main{
@@ -43,23 +43,30 @@ button:hover{
 
 .checkResult{
     display: none;
+    z-index:1000;/*上に重ねる*/
     width: 5em;
     height: 5em;
     background: rgb(255, 255, 173);
     border-radius: 50%;
     position: fixed; 
-    top: 20%;
-    left: 55%;
+    top: 15%;
+    left: 50%;
     text-align: center;
     line-height: 5em;
     opacity: .8; /*背景色半透明*/
-  
+    color: orangered;
     /* margin-top: 10;
     margin-bottom: 0; */
 } 
 
-/* #num{
+#num{
     position: absolute;
-    top: 25%;
-    left: 50%;
-} */
+    bottom: 70%;
+    left: 48%;
+    margin: 0px;
+    /* position: absolute;
+    margin-top: -100px;
+    margin-left: -100px;
+    top: 30%;
+    left: 50%; */
+}
