@@ -1,16 +1,20 @@
 html{
-    background-color: #d0f3ff;
+    background-color: #98e0f8;
     max-width: 960px
 }
 
 body{
-    background-color: #98e0f8;
+    background-color: #d0f3ff;
     margin: 0 auto;
 	width: 80%;
-    height: 300px;
+    /* height: 300px; */
     border-radius: 7px;
-    /* min-width: 200px;
-    min-height: 200px; */
+    min-width: 200px;
+    min-height: 200px;
+}
+
+h1{
+    color: navy;
 }
 
 main{
@@ -19,16 +23,17 @@ main{
 }
 
 button{
-    height: 2.5em;
-    width: 8em;
-    background-color: white;
-    border: 1px solid rgb(0, 0, 48);
-    padding: 10px 20px;
+    /* height: 2.5em;
+    width: 8em; */
+    background-color: #ebfaff;
+    border: 1px solid rgb(60, 60, 139);
+    padding: 0.25em 0.5em;
     margin: 10px auto;
     transition: all 0.3s;
-    font-size: large;
-    box-shadow: 2px 2px 0 0 rgb(0, 0, 48);
-    border-radius: 7px;
+    font-size: 200%;
+    box-shadow: 2px 2px 0 0 rgb(60, 60, 139);
+    color: navy;
+    border-radius: 50%;
 }
 
 button:hover{
@@ -43,30 +48,23 @@ button:hover{
 
 .checkResult{
     display: none;
-    z-index:1000;/*上に重ねる*/
     width: 5em;
     height: 5em;
     background: rgb(255, 255, 173);
     border-radius: 50%;
     position: fixed; 
-    top: 15%;
-    left: 50%;
+    top: 20%;
+    left: 55%;
     text-align: center;
     line-height: 5em;
     opacity: .8; /*背景色半透明*/
-    color: orangered;
+  
     /* margin-top: 10;
     margin-bottom: 0; */
 } 
 
-#num{
+/* #num{
     position: absolute;
-    bottom: 70%;
-    left: 48%;
-    margin: 0px;
-    /* position: absolute;
-    margin-top: -100px;
-    margin-left: -100px;
-    top: 30%;
-    left: 50%; */
-}
+    top: 25%;
+    left: 50%;
+} */
